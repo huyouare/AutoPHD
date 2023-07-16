@@ -13,25 +13,16 @@ if __name__ == "__main__":
         print("TOPIC:", topic)
         print("FIGURES:", figures)
         # Pass the figure paths to the generate_paper function
-        figure_paths = [figure.name for figure in figures]
+        figure_paths = []
+        # Save the figures to disk
+        for index, figure in enumerate(figures):
+            path = f"figure_{index}.png"
+            figure.save(path)
+            figure_paths.append(path)
 
         skeleton = generate_paper_skeleton(topic)
         # Then generate a paper
         generate_paper(topic, skeleton, figure_paths)
-        # # Parse the TOC from skeleton
-        # toc = skeleton.split("SECTIONS:")[1]
-        # print("TOC:", toc)
-        # toc = json.loads(toc)
-        # print(toc)
-
-        # figures = []
-        # output = ""
-            
-        #     print("PROMPT:", prompt)
-        #     output, figurse = await interpreter.generate_response(prompt, "climate.csv")
-        #     print("OUTPUT:", output, "Figure:", figures)
-        #     # figures.append((output, figure))
-
         
 
     asyncio.run(main())

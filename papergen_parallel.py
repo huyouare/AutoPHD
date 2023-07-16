@@ -125,17 +125,19 @@ Use the following LaTeX code format:
 
 def generate_paper_section(section_name = "Introduction", subsection = "", messages = [], figure_paths = []):
     print("Generating paper section...")
+    print("FIGURES:", figure_paths)
 
     prompt = f"""
 Write the {section_name} section of the paper in LaTeX syntax using the above skeleton.
 If provided, only write the following subsection: {subsection}.
+Embed (in Latex) one of the following figures (local files) into the section: {figure_paths}.
+For example, \\includegraphics[width=0.8\\textwidth]{{figure_0.png}}.
 Do not use LaTeX code that requres packages other than neurips_2021.
 Make it sound as close to a real paper as possible, using specific facts, references, and formulas.
 Make sure to liberally use \\cite to cite your sources.
 
-If appropriate, you may add the following figures: {figure_paths}.
-
 Do not write more than one subsection or 1500 tokens at a time. Do not end in the middle of a sentence.
+Make sure to include one of the local figures as mentioned above.
     """
 
     # Generate the section
