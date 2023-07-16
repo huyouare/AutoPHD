@@ -125,7 +125,7 @@ Use the following LaTeX code format:
 
 def generate_paper_section(section_name = "Introduction", subsection = "", messages = [], figure_paths = []):
     print("Generating paper section...")
-    print("FIGURES:", figure_paths)
+    print("figure_paths:", figure_paths)
 
     prompt = f"""
 Write the {section_name} section of the paper in LaTeX syntax using the above skeleton.
