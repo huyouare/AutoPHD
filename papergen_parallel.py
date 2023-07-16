@@ -113,6 +113,7 @@ Use the following LaTeX code format:
 \\usepackage{amsmath}
 \\usepackage{booktabs}
 \\usepackage{url}
+\\usepackage{graphicx}
 ...
 \\end{abstract}
 """
@@ -130,23 +131,24 @@ def generate_paper_section(section_name = "Introduction", subsection = "", messa
     prompt = f"""
 Write the {section_name} section of the paper in LaTeX syntax using the above skeleton.
 If provided, only write the following subsection: {subsection}.
-Embed (in Latex) one of the following figures (local files) into the section: {figure_paths}.
+YOU MUST include (in Latex) one of the following figures (local files) into the section: {figure_paths}.
 For example, \\includegraphics[width=0.8\\textwidth]{{figure_0.png}}.
-Do not use LaTeX code that requres packages other than neurips_2021.
+Do not use LaTeX code that requres packages other than neurips_2021 and graphicx.
 Make it sound as close to a real paper as possible, using specific facts, references, and formulas.
 Make sure to liberally use \\cite to cite your sources.
 
 Do not write more than one subsection or 1500 tokens at a time. Do not end in the middle of a sentence.
-Make sure to include one of the local figures as mentioned above.
+YOU MUST include one of the local figures as mentioned above.
     """
+    print("PROMPT:", prompt)
 
     # Generate the section
-    section = generate_completion(prompt, messages, max_tokens=1500)
+    section = generate_completion(prompt, messages, max_tokens=1000)
 
     print("Done.")
 
     # If there are any lines containing \includegraphics, remove only that line.
-    section = "\n".join([line for line in section.split("\n") if "\\includegraphics" not in line])
+    # section = "\n".join([line for line in section.split("\n") if "\\includegraphics" not in line])
 
     return section_name, section
 

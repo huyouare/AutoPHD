@@ -4,12 +4,12 @@ import asyncio
 import json
 
 
-def run():
-    async def main():
+def run(file_path):
+    async def main(file_path):
         # First generate a topic
         interpreter = CodeInterpreter()
         topic, figures = await interpreter.generate_response(
-            "Given the data in a file called climate.csv, tell me up to 5 insights and generate 3 figures that can be used to write a publishable paper. Provide a short description for each figure, numbered accordingly.",
+            "Given the data in a file called climate.csv, tell me up to 5 insights and generate 5 figures that can be used to write a publishable paper. Provide a short description for each figure, numbered accordingly.",
             "climate.csv")
         print("TOPIC:", topic)
         print("FIGURES:", figures)
@@ -26,7 +26,7 @@ def run():
         generate_paper(topic, skeleton, figure_paths)
         
 
-    asyncio.run(main())
+    asyncio.run(main(file_path))
 
 
 if __name__ == "__main__":
@@ -34,7 +34,7 @@ if __name__ == "__main__":
         # First generate a topic
         interpreter = CodeInterpreter()
         topic, figures = await interpreter.generate_response(
-            "Given the data in a file called climate.csv, tell me up to 5 insights and generate 3 figures that can be used to write a publishable paper. Provide a short description for each figure, numbered accordingly.",
+            "Given the data in a file called climate.csv, tell me up to 5 insights and generate 5 figures that can be used to write a publishable paper. Provide a short description for each figure, numbered accordingly.",
             "climate.csv")
         print("TOPIC:", topic)
         print("FIGURES:", figures)
