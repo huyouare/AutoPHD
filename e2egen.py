@@ -9,7 +9,7 @@ def run(file_path):
         # First generate a topic
         interpreter = CodeInterpreter()
         topic, figures = await interpreter.generate_response(
-            "Given the data in a file called climate.csv, tell me up to 5 insights and generate 5 figures that can be used to write a publishable paper. Provide a short description for each figure, numbered accordingly.",
+            "Given the data in a file called climate.csv, tell me up to 5 insights and generate 5 figures (in separate files) that can be used to write a publishable paper. Provide a short description for each figure, numbered accordingly.",
             "climate.csv")
         print("TOPIC:", topic)
         print("FIGURES:", figures)
@@ -17,7 +17,7 @@ def run(file_path):
         figure_paths = []
         # Save the figures to disk
         for index, figure in enumerate(figures):
-            path = f"figure_{index}.png"
+            path = f"figure_{index + 1}.png"
             figure.save(path)
             figure_paths.append(path)
 
@@ -34,7 +34,7 @@ if __name__ == "__main__":
         # First generate a topic
         interpreter = CodeInterpreter()
         topic, figures = await interpreter.generate_response(
-            "Given the data in a file called climate.csv, tell me up to 5 insights and generate 5 figures that can be used to write a publishable paper. Provide a short description for each figure, numbered accordingly.",
+            "Given the data in a file called climate.csv, tell me up to 5 insights and generate 5 figures (in separate files) that can be used to write a publishable paper. Provide a short description for each figure, numbered accordingly.",
             "climate.csv")
         print("TOPIC:", topic)
         print("FIGURES:", figures)
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         figure_paths = []
         # Save the figures to disk
         for index, figure in enumerate(figures):
-            path = f"figure_{index}.png"
+            path = f"figure_{index + 1}.png"
             figure.save(path)
             figure_paths.append(path)
 
